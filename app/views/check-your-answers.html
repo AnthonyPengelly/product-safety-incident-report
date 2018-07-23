@@ -13,6 +13,9 @@
         Check your answers before sending your application
       </h1>
 
+      <h2 class="govuk-heading-m">
+        Basic details
+      </h2>
       <!-- use additional modifier class to change column widths for multiple groups of questions and answers: -->
       <!--   * `app-check-your-answers--short` for short questions -->
       <!--   * `app-check-your-answers__questions-long` for long questions -->
@@ -62,6 +65,76 @@
           <dd class="app-check-your-answers__change">
             <a href="cacs-case-number">
               Change<span class="govuk-visually-hidden"> CACS case number</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      <h2 class="govuk-heading-m">
+        Business details
+      </h2>
+
+      <dl class="app-check-your-answers app-check-your-answers--short">
+        <div class="app-check-your-answers__contents">
+          <dt class="app-check-your-answers__question">
+            Business name
+          </dt>
+          <dd class="app-check-your-answers__answer">
+            {% if data['business-name'] %}
+              {{ data['business-name']}}
+            {% elif data['do-you-have-a-report'] === 'yes' %}
+              <span class="hint-text">Optional</span>
+            {% else %}
+              <span class="hint-text">Required if no case file attached</span>
+            {% endif %}
+          </dd>
+          <dd class="app-check-your-answers__change">
+            <a href="business-name">
+              {% if data['business-name'] %}
+                Change<span class="govuk-visually-hidden"> business</span>
+              {% else %}
+                Add<span class="govuk-visually-hidden"> business</span>
+              {% endif %}
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      <h2 class="govuk-heading-m">
+        Product details
+      </h2>
+
+      <dl class="app-check-your-answers app-check-your-answers--short">
+        <div class="app-check-your-answers__contents">
+          <dt class="app-check-your-answers__question">
+            Incident severity
+          </dt>
+          <dd class="app-check-your-answers__answer">
+            {{ data['how-severe-is-your-case']}}
+          </dd>
+          <dd class="app-check-your-answers__change">
+            <a href="incident-severity">
+              Change<span class="govuk-visually-hidden"> severity</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      <h2 class="govuk-heading-m">
+        Incident details
+      </h2>
+
+      <dl class="app-check-your-answers app-check-your-answers--short">
+        <div class="app-check-your-answers__contents">
+          <dt class="app-check-your-answers__question">
+            Incident severity
+          </dt>
+          <dd class="app-check-your-answers__answer">
+            {{ data['how-severe-is-your-case']}}
+          </dd>
+          <dd class="app-check-your-answers__change">
+            <a href="incident-severity">
+              Change<span class="govuk-visually-hidden"> severity</span>
             </a>
           </dd>
         </div>
