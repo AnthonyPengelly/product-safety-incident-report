@@ -74,31 +74,13 @@
         Business details
       </h2>
 
-      <dl class="app-check-your-answers app-check-your-answers--short">
-        <div class="app-check-your-answers__contents">
-          <dt class="app-check-your-answers__question">
-            Business name
-          </dt>
-          <dd class="app-check-your-answers__answer">
-            {% if data['business-name'] %}
-              {{ data['business-name']}}
-            {% elif data['do-you-have-a-report'] === 'yes' %}
-              <span class="hint-text">Optional</span>
-            {% else %}
-              <span class="hint-text">Required if no case file attached</span>
-            {% endif %}
-          </dd>
-          <dd class="app-check-your-answers__change">
-            <a href="business-name">
-              {% if data['business-name'] %}
-                Change<span class="govuk-visually-hidden"> business</span>
-              {% else %}
-                Add<span class="govuk-visually-hidden"> business</span>
-              {% endif %}
-            </a>
-          </dd>
-        </div>
-      </dl>
+      {{ required_field("Business name", "business-name") }}
+      {{ required_address_field("Registered address", "registered") }}
+      {{ required_address_field("Trading address", "trading") }}
+      {{ required_field("Primary contact name", "primary-contact-name") }}
+      {{ required_field("Email address", "email-address") }}
+      {{ required_field("Website", "website") }}
+      {{ required_field("Phone number", "phone-number") }}
 
       <h2 class="govuk-heading-m">
         Product details
@@ -153,3 +135,65 @@
   </div>
 
 {% endblock %}
+
+{% macro required_field(name, key) %}
+  <dl class="app-check-your-answers app-check-your-answers--short">
+    <div class="app-check-your-answers__contents">
+      <dt class="app-check-your-answers__question">
+        {{ name }}
+      </dt>
+      <dd class="app-check-your-answers__answer">
+        {% if data[key] %}
+          {{ data[key] }}
+        {% elif data['do-you-have-a-report'] === 'yes' %}
+          <span class="hint-text">Optional</span>
+        {% else %}
+          <span class="hint-text">Required if no case file attached</span>
+        {% endif %}
+      </dd>
+      <dd class="app-check-your-answers__change">
+        <a href="{{key}}">
+          {% if data[key] %}
+            Change<span class="govuk-visually-hidden"> {{ name }}</span>
+          {% else %}
+            Add<span class="govuk-visually-hidden"> {{ name }}</span>
+          {% endif %}
+        </a>
+      </dd>
+    </div>
+  </dl>
+{% endmacro %}
+
+{% macro required_address_field(name, key) %}
+  <dl class="app-check-your-answers app-check-your-answers--short">
+    <div class="app-check-your-answers__contents">
+      <dt class="app-check-your-answers__question">
+        {{ name }}
+      </dt>
+      <dd class="app-check-your-answers__answer">
+        {% if data[key + "-address-line-1"] %}
+          <p>
+            {{ data[key + "-address-line-1"] }}<br />
+            {{ data[key + "-address-line-2"] }}<br />
+            {{ data[key + "-address-town"] }}<br />
+            {{ data[key + "-address-county"] }}<br />
+            {{ data[key + "-address-postcode"] }}
+          </p>
+        {% elif data['do-you-have-a-report'] === 'yes' %}
+          <span class="hint-text">Optional</span>
+        {% else %}
+          <span class="hint-text">Required if no case file attached</span>
+        {% endif %}
+      </dd>
+      <dd class="app-check-your-answers__change">
+        <a href="{{key}}-address">
+          {% if data[key + "-address-line-1"] %}
+            Change<span class="govuk-visually-hidden"> {{ name }}</span>
+          {% else %}
+            Add<span class="govuk-visually-hidden"> {{ name }}</span>
+          {% endif %}
+        </a>
+      </dd>
+    </div>
+  </dl>
+{% endmacro %}

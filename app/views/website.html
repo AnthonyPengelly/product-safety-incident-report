@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Business name
+  Website
 {% endblock %}
 
 {% block content %}
@@ -10,12 +10,12 @@
       <form action="/check-your-answers" method="post" class="form">
         {{ govukInput({
             label: {
-              text: "Business name",
+              text: "Website",
               isPageHeading: true,
               classes: "govuk-label--l"
             },
-            id: "business-name",
-            name: "business-name"
+            id: "website",
+            name: "website"
           }) }}
 
         <button class="govuk-button">Continue</button>
