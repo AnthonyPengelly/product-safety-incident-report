@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Do you have a report?
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="/upload-report" method="post" class="form">
+        {{ govukRadios({
+        idPrefix: "do-you-have-a-report",
+        name: "do-you-have-a-report",
+        fieldset: {
+          legend: {
+            text: "Do you have a report you can upload?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: {
+          text: "If you've already created a report, download it from your system and upload one of these file types: .csv .json .xml .xlsx .pdf .docx"
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes"
+          },
+          {
+            value: "no",
+            text: "No"
+          }
+        ]
+      }) }}
+        <button class="govuk-button">Continue</button>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  CACS case number
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="/check-your-answers" method="post" class="form">
+        {% set cacsCaseHtml %}
+        {{ govukInput({
+          id: "cacs-case-number",
+          name: "cacs-case-number",
+          classes: "govuk-!-width-one-third",
+          label: {
+            text: "CACS case number"
+          }
+        }) }}
+        {% endset -%}
+
+        {{ govukRadios({
+          idPrefix: "do-you-have-cacs-number",
+          name: "do-you-have-cacs-number",
+          fieldset: {
+            legend: {
+              text: "Do you have a Citizens Advice Consumer Service (CACS) case number?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              conditional: {
+                html: cacsCaseHtml
+              }
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+        <button class="govuk-button">Continue</button>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

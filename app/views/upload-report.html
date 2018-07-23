@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Upload report
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="/cacs-case-number" method="post" class="form">
+        <h1 class="govuk-heading-l">
+          Upload report
+        </h1>
+        {{ govukFileUpload({
+          id: "upload-report",
+          name: "upload-report",
+          label: {
+            text: "Upload report of the case"
+          }
+        }) }}
+        <button class="govuk-button">Continue</button>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

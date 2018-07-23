@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Incident severity
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="/do-you-have-a-report" method="post" class="form">
+      {{ govukRadios({
+        idPrefix: "how-severe-is-your-case",
+        name: "how-severe-is-your-case",
+        fieldset: {
+          legend: {
+            text: "How severe is your case?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "Serious",
+            text: "Serious"
+          },
+          {
+            value: "High",
+            text: "High"
+          },
+          {
+            value: "Medium",
+            text: "Medium"
+          },
+          {
+            value: "Low",
+            text: "Low"
+          }
+        ]
+      }) }}
+        <button class="govuk-button">Continue</button>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

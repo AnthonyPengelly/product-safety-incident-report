@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Check your answers
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-govuk-grid-row">
+    <div class="govuk-grid-govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Check your answers before sending your application
+      </h1>
+
+      <!-- use additional modifier class to change column widths for multiple groups of questions and answers: -->
+      <!--   * `app-check-your-answers--short` for short questions -->
+      <!--   * `app-check-your-answers__questions-long` for long questions -->
+      <!--   * none for single group of q&a -->
+      <dl class="app-check-your-answers app-check-your-answers--short">
+        <div class="app-check-your-answers__contents">
+          <dt class="app-check-your-answers__question">
+            Incident severity
+          </dt>
+          <dd class="app-check-your-answers__answer">
+            {{ data['how-severe-is-your-case']}}
+          </dd>
+          <dd class="app-check-your-answers__change">
+            <a href="incident-severity">
+              Change<span class="govuk-visually-hidden"> severity</span>
+            </a>
+          </dd>
+        </div>
+        <div class="app-check-your-answers__contents">
+          <dt class="app-check-your-answers__question">
+            Uploaded file
+          </dt>
+          <dd class="app-check-your-answers__answer">
+            {% if data['do-you-have-a-report'] === 'yes' %}
+              {{ data['upload-report']}}
+            {% else %}
+              No file uploaded
+            {% endif %}
+          </dd>
+          <dd class="app-check-your-answers__change">
+            <a href="do-you-have-a-report">
+              Change<span class="govuk-visually-hidden"> file</span>
+            </a>
+          </dd>
+        </div>
+        <div class="app-check-your-answers__contents">
+          <dt class="app-check-your-answers__question">
+            CACS case number
+          </dt>
+          <dd class="app-check-your-answers__answer">
+            {% if data['do-you-have-cacs-number'] === 'yes' %}
+              {{ data['cacs-case-number']}}
+            {% else %}
+              No case number
+            {% endif %}
+          </dd>
+          <dd class="app-check-your-answers__change">
+            <a href="cacs-case-number">
+              Change<span class="govuk-visually-hidden"> CACS case number</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      <h2 class="govuk-heading-m">Now send your application</h2>
+
+      <p>
+        By submitting this notification you are confirming that, to the best of your knowledge, the details you are providing are correct.
+      </p>
+
+      <a class="govuk-button" href="confirmation-page" role="button">
+        Send incident report
+      </a>
+    </div>
+  </div>
+
+{% endblock %}
