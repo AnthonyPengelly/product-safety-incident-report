@@ -19,4 +19,9 @@ router.post('/upload-report', function (req, res) {
   }
 })
 
+router.get('/confirmation-page', function(req, res, next) {
+  res.locals.data['confirmed'] = "test";
+  next();
+});
+
 module.exports = router

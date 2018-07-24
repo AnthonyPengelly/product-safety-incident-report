@@ -145,9 +145,12 @@
     </div>
     <div class="govuk-grid-column-one-third">
       {% if data['do-you-have-a-report'] === 'yes' %}
-        <a class="govuk-button govuk-!-margin-top-6" href="confirmation-page" role="button">
-          Submit incident report
-        </a>
+        <form action="/confirmation-page" method="post">
+          <input type="checkbox" name="confirmed" checked="true" class="govuk-visually-hidden"></input>
+          <button class="govuk-button govuk-!-margin-top-6">
+            Submit incident report
+          </button>
+        </form>
       {% else %}
         <p class="govuk-!-margin-top-6">
           To submit the report, attach a case file or answer all of the required questions.
