@@ -11,14 +11,13 @@ module.exports = function (env) {
     return anyCategories(data);
   }
 
-  filters.getCategoriesString = function(data) {
+  filters.getCategories = function(data) {
     if (!anyCategories(data)) {
       return "";
     }
-    var categories = data['product-categories'].map(function(category) {
+    return data['product-categories'].map(function(category) {
       return toTitleCase(category.replace(new RegExp('-', 'g'), ' '));
     });
-    return categories.join(', ');
   }
 
   function anyCategories(data) {
