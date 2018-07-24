@@ -105,18 +105,18 @@
         </div>
       </dl>
 
-      {{ required_field("Description of incident", "description-of-incident") }}
+      {{ required_field("Description", "description-of-incident", "Required if no case file attached") }}
 
       <h2 class="govuk-heading-m govuk-!-padding-top-6">
         Product
       </h2>
 
-      {{ required_field("Product name", "product-name") }}
+      {{ required_field("Name", "product-name", "Required if no case file attached") }}
 
       <dl class="app-check-your-answers app-check-your-answers--short">
         <div class="app-check-your-answers__contents">
           <dt class="app-check-your-answers__question">
-            Product categories
+            Category
           </dt>
           <dd class="app-check-your-answers__answer">
             {% if data | anyCategories %}
@@ -143,20 +143,20 @@
         </div>
       </dl>
 
-      {{ required_field("Product model number", "product-model-number") }}
+      {{ required_field("Model number", "product-model-number", "Optional") }}
 
       
       <h2 class="govuk-heading-m govuk-!-padding-top-6">
         Business
       </h2>
 
-      {{ required_field("Business name", "business-name") }}
-      {{ required_address_field("Registered address", "registered") }}
-      {{ required_address_field("Trading address", "trading") }}
-      {{ required_field("Primary contact name", "primary-contact-name") }}
-      {{ required_field("Email address", "email-address") }}
-      {{ required_field("Website", "website") }}
-      {{ required_field("Phone number", "phone-number") }}
+      {{ required_field("Name", "business-name", "Optional") }}
+      {{ required_address_field("Registered address", "registered", "Optional") }}
+      {{ required_address_field("Trading address", "trading", "Optional") }}
+      {{ required_field("Contact name", "primary-contact-name", "Optional") }}
+      {{ required_field("Email address", "email-address", "Optional") }}
+      {{ required_field("Website", "website", "Optional") }}
+      {{ required_field("Phone number", "phone-number", "Optional") }}
 
       <div class="govuk-!-margin-top-6">
         <a href="/delete-report">Delete incident report</a>
@@ -180,7 +180,7 @@
 
 {% endblock %}
 
-{% macro required_field(name, key, optional_with_file=true, required_text="Required if no case file attached") %}
+{% macro required_field(name, key, optional_with_file=true, required_text) %}
   <dl class="app-check-your-answers app-check-your-answers--short">
     <div class="app-check-your-answers__contents">
       <dt class="app-check-your-answers__question">
@@ -208,7 +208,7 @@
   </dl>
 {% endmacro %}
 
-{% macro required_address_field(name, key) %}
+{% macro required_address_field(name, key, required_text) %}
   <dl class="app-check-your-answers app-check-your-answers--short">
     <div class="app-check-your-answers__contents">
       <dt class="app-check-your-answers__question">
@@ -226,7 +226,7 @@
         {% elif data['do-you-have-a-report'] === 'yes' %}
           <span class="hint-text">Optional</span>
         {% else %}
-          <span class="hint-text">Required if no case file attached</span>
+          <span class="hint-text">{{ required_text }}</span>
         {% endif %}
       </dd>
       <dd class="app-check-your-answers__change">
