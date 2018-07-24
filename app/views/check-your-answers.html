@@ -89,14 +89,24 @@
       <dl class="app-check-your-answers app-check-your-answers--short">
         <div class="app-check-your-answers__contents">
           <dt class="app-check-your-answers__question">
-            Incident severity
+            Product categories
           </dt>
           <dd class="app-check-your-answers__answer">
-            {{ data['how-severe-is-your-case']}}
+            {% if data | anyCategories %}
+              {{ data | getCategoriesString }}
+            {% elif data['do-you-have-a-report'] === 'yes' %}
+              <span class="hint-text">Optional</span>
+            {% else %}
+              <span class="hint-text">Required if no case file attached</span>
+            {% endif %}
           </dd>
           <dd class="app-check-your-answers__change">
-            <a href="incident-severity">
-              Change<span class="govuk-visually-hidden"> severity</span>
+            <a href="product-categories">
+              {% if data[key] %}
+                Change<span class="govuk-visually-hidden"> categories</span>
+              {% else %}
+                Add<span class="govuk-visually-hidden"> categories</span>
+              {% endif %}
             </a>
           </dd>
         </div>

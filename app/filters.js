@@ -7,6 +7,28 @@ module.exports = function (env) {
    */
   var filters = {}
 
+  filters.anyCategories = function(data) {
+    return anyCategories(data);
+  }
+
+  filters.getCategoriesString = function(data) {
+    if (!anyCategories(data)) {
+      return "";
+    }
+    var categories = data['product-categories'].map(function(category) {
+      return toTitleCase(category.replace(new RegExp('-', 'g'), ' '));
+    });
+    return categories.join(', ');
+  }
+
+  function anyCategories(data) {
+    return data['product-categories'] && data['product-categories'].length !== 0;
+  }
+
+  function toTitleCase(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   /* ------------------------------------------------------------------
     add your methods to the filters obj below this comment block:
     @example:
