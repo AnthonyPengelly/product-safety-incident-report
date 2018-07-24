@@ -8,19 +8,44 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <form action="/incident-severity" method="post" class="form">
-        {{ govukInput({
-            label: {
-              text: "Case number",
-              isPageHeading: true,
-              classes: "govuk-label--l"
-            },
+        {% set caseNumberHtml %}
+          {{ govukInput({
             classes: "govuk-input--width-20",
-            hint: {
-              text: "If you already have a case number on a different system, use this number to help you track this case."
+            label: {
+              text: "Case number"
             },
             id: "case-number",
             name: "case-number"
           }) }}
+        {% endset -%}
+
+        {{ govukRadios({
+          idPrefix: "do-you-have-case-number",
+          name: "do-you-have-case-number",
+          fieldset: {
+            legend: {
+              text: "Do you have an existing case number?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "If you already have a case number on a different system, use this number to help you track this case."
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              conditional: {
+                html: caseNumberHtml
+              }
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
 
         <button class="govuk-button">Continue</button>
       </form>

@@ -22,10 +22,29 @@
       <h2 class="govuk-heading-m govuk-!-padding-top-6">
         Case
       </h2>
-            
-      {{ required_field("Case number", "case-number", false, "Required") }}
 
       <dl class="app-check-your-answers app-check-your-answers--short">
+        <div class="app-check-your-answers__contents">
+          <dt class="app-check-your-answers__question">
+            Case number
+          </dt>
+          <dd class="app-check-your-answers__answer">
+            {% if data['do-you-have-case-number'] === 'yes' %}
+              {{ data['case-number']}}
+            {% else %}
+              <span class="hint-text">Optional</span>
+            {% endif %}
+          </dd>
+          <dd class="app-check-your-answers__change">
+            <a href="case-number">
+              {% if data['do-you-have-case-number'] === 'yes' %}
+                Change<span class="govuk-visually-hidden"> Case number</span>
+              {% else %}
+                Add<span class="govuk-visually-hidden"> Case number</span>
+              {% endif %}
+            </a>
+          </dd>
+        </div>
         <div class="app-check-your-answers__contents">
           <dt class="app-check-your-answers__question">
             Uploaded file
@@ -48,7 +67,7 @@
             CACS case number
           </dt>
           <dd class="app-check-your-answers__answer">
-            {% if data['do-you-have-cacs-number'] === 'yes' %}
+            {% if data['cacs-case-number'] %}
               {{ data['cacs-case-number']}}
             {% else %}
               <span class="hint-text">Optional</span>
@@ -56,7 +75,7 @@
           </dd>
           <dd class="app-check-your-answers__change">
             <a href="cacs-case-number">
-              {% if data | anyCategories %}
+              {% if data['cacs-case-number'] %}
                 Change<span class="govuk-visually-hidden"> CACS case number</span>
               {% else %}
                 Add<span class="govuk-visually-hidden"> CACS case number</span>

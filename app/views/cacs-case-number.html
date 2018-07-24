@@ -9,41 +9,17 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <form action="/check-your-answers" method="post" class="form">
-        {% set cacsCaseHtml %}
         {{ govukInput({
           id: "cacs-case-number",
           name: "cacs-case-number",
           classes: "govuk-!-width-one-third",
-          label: {
-            text: "CACS case number"
-          }
-        }) }}
-        {% endset -%}
-
-        {{ govukRadios({
-          idPrefix: "do-you-have-cacs-number",
-          name: "do-you-have-cacs-number",
-          fieldset: {
-            legend: {
-              text: "Do you have a Citizens Advice Consumer Service (CACS) case number?",
+            label: {
+              text: "Citizens Advice Consumer Service case number",
               isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
+              classes: "govuk-label--l"
             }
-          },
-          items: [
-            {
-              value: "yes",
-              text: "Yes",
-              conditional: {
-                html: cacsCaseHtml
-              }
-            },
-            {
-              value: "no",
-              text: "No"
-            }
-          ]
         }) }}
+
         <button class="govuk-button">Continue</button>
 
       </form>
