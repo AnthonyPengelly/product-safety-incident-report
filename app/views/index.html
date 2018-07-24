@@ -13,14 +13,29 @@
       </h1>
       <h2 class="govuk-heading-s"><a href="product-name">Create a new incident report</a></h2>
 
+      {% if not data['confirmed'] and not data['product-name'] %}
+        <p>
+          You must report all severe product safety incidents. Severe incidents will be responded to within 24 hours.
+        </p>
+        <p class='govuk-!-padding-bottom-6'>
+          You can report other product safety incidents to improve the data we have to identify areas of risk to consumers and coordinate action.
+        </p>
+      {% endif %}
+    </div>
+
+    <div class="govuk-grid-column-full">
       {% if data['confirmed'] %}
-        <table class="govuk-table govuk-!-margin-top-6">
-          <caption class="govuk-table__caption">Submitted reports</caption>
+        <h3 class="govuk-heading-m govuk-!-margin-top-6">
+          Submitted reports
+        </h3>
+        <table class="govuk-table">
+          <caption class="govuk-table__caption govuk-visually-hidden">Submitted reports</caption>
           <thead class="govuk-table__head">
             <tr class="govuk-table__row">
               <th class="govuk-table__header" scope="col">Product name</th>
               <th class="govuk-table__header" scope="col">Case number</th>
               <th class="govuk-table__header" scope="col">Date submitted</th>
+              <th class="govuk-table__header" scope="col">OPSS reference</th>
               <th class="govuk-table__header" scope="col"></th>
             </tr>
           </thead>
@@ -29,13 +44,17 @@
               <td class="govuk-table__cell">{{ data['product-name'] }}</td>
               <td class="govuk-table__cell">{{ data['case-number'] }}</td>
               <td class="govuk-table__cell">24/07/2018</td>
+              <td class="govuk-table__cell">HDJ2123F</td>
               <td class="govuk-table__cell right-align"><a href="/check-your-answers">View</a></td>
             </tr>
           </tbody>
         </table>
       {% elif data['product-name'] %}
-        <table class="govuk-table govuk-!-margin-top-6">
-          <caption class="govuk-table__caption">Reports in progress</caption>
+        <h3 class="govuk-heading-m govuk-!-margin-top-6">
+          Reports in progress
+        </h3>
+        <table class="govuk-table">
+          <caption class="govuk-table__caption govuk-visually-hidden">Reports in progress</caption>
           <thead class="govuk-table__head">
             <tr class="govuk-table__row">
               <th class="govuk-table__header" scope="col">Product name</th>
