@@ -12,7 +12,7 @@ router.post('/upload-report', function (req, res) {
 
   if (doYouHaveAReport === 'no') {
     // Redirect to the relevant page
-    res.redirect('/cacs-case-number')
+    res.redirect('/check-your-answers')
   } else {
     // If over18 is any other value (or is missing) render the page requested
     res.render('upload-report')

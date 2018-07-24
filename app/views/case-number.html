@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Case number
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="/incident-severity" method="post" class="form">
+        {{ govukInput({
+            label: {
+              text: "Case number",
+              isPageHeading: true,
+              classes: "govuk-label--l"
+            },
+            classes: "govuk-input--width-20",
+            hint: {
+              text: "If you already have a case number on a different system, use this number to help you track this case."
+            },
+            id: "case-number",
+            name: "case-number"
+          }) }}
+
+        <button class="govuk-button">Continue</button>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

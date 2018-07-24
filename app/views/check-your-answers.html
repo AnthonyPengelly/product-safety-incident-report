@@ -6,34 +6,26 @@
 
 {% block content %}
 
-  <div class="govuk-govuk-grid-row">
-    <div class="govuk-grid-govuk-grid-column-two-thirds">
-
-      <h1 class="govuk-heading-l">
-        Check your answers before sending your application
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukBackLink({
+        text: "Back",
+        href: "/"
+      }) }}
+      <h1 class="govuk-heading-l govuk-!-padding-top-6">
+        {{ data['product-name'] }}
       </h1>
-
-      <h2 class="govuk-heading-m">
-        Basic details
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h2 class="govuk-heading-m govuk-!-padding-top-6">
+        Case
       </h2>
-      <!-- use additional modifier class to change column widths for multiple groups of questions and answers: -->
-      <!--   * `app-check-your-answers--short` for short questions -->
-      <!--   * `app-check-your-answers__questions-long` for long questions -->
-      <!--   * none for single group of q&a -->
+            
+      {{ required_field("Case number", "case-number", false, "Required") }}
+
       <dl class="app-check-your-answers app-check-your-answers--short">
-        <div class="app-check-your-answers__contents">
-          <dt class="app-check-your-answers__question">
-            Incident severity
-          </dt>
-          <dd class="app-check-your-answers__answer">
-            {{ data['how-severe-is-your-case']}}
-          </dd>
-          <dd class="app-check-your-answers__change">
-            <a href="incident-severity">
-              Change<span class="govuk-visually-hidden"> severity</span>
-            </a>
-          </dd>
-        </div>
         <div class="app-check-your-answers__contents">
           <dt class="app-check-your-answers__question">
             Uploaded file
@@ -59,65 +51,23 @@
             {% if data['do-you-have-cacs-number'] === 'yes' %}
               {{ data['cacs-case-number']}}
             {% else %}
-              No case number
+              <span class="hint-text">Optional</span>
             {% endif %}
           </dd>
           <dd class="app-check-your-answers__change">
             <a href="cacs-case-number">
-              Change<span class="govuk-visually-hidden"> CACS case number</span>
-            </a>
-          </dd>
-        </div>
-      </dl>
-
-      <h2 class="govuk-heading-m">
-        Business details
-      </h2>
-
-      {{ required_field("Business name", "business-name") }}
-      {{ required_address_field("Registered address", "registered") }}
-      {{ required_address_field("Trading address", "trading") }}
-      {{ required_field("Primary contact name", "primary-contact-name") }}
-      {{ required_field("Email address", "email-address") }}
-      {{ required_field("Website", "website") }}
-      {{ required_field("Phone number", "phone-number") }}
-
-      <h2 class="govuk-heading-m">
-        Product details
-      </h2>
-
-      <dl class="app-check-your-answers app-check-your-answers--short">
-        <div class="app-check-your-answers__contents">
-          <dt class="app-check-your-answers__question">
-            Product categories
-          </dt>
-          <dd class="app-check-your-answers__answer">
-            {% if data | anyCategories %}
-              <ul>
-                {% for category in data | getCategories %}
-                  <li>{{ category }}</li>
-                {% endfor %}
-              </ul>
-            {% elif data['do-you-have-a-report'] === 'yes' %}
-              <span class="hint-text">Optional</span>
-            {% else %}
-              <span class="hint-text">Required if no case file attached</span>
-            {% endif %}
-          </dd>
-          <dd class="app-check-your-answers__change">
-            <a href="product-categories">
-              {% if data[key] %}
-                Change<span class="govuk-visually-hidden"> categories</span>
+              {% if data | anyCategories %}
+                Change<span class="govuk-visually-hidden"> CACS case number</span>
               {% else %}
-                Add<span class="govuk-visually-hidden"> categories</span>
+                Add<span class="govuk-visually-hidden"> CACS case number</span>
               {% endif %}
             </a>
           </dd>
         </div>
       </dl>
 
-      <h2 class="govuk-heading-m">
-        Incident details
+      <h2 class="govuk-heading-m govuk-!-padding-top-6">
+        Incident
       </h2>
 
       <dl class="app-check-your-answers app-check-your-answers--short">
@@ -136,21 +86,79 @@
         </div>
       </dl>
 
-      <h2 class="govuk-heading-m">Now send your application</h2>
+      {{ required_field("Description of incident", "description-of-incident") }}
 
-      <p>
-        By submitting this notification you are confirming that, to the best of your knowledge, the details you are providing are correct.
-      </p>
+      <h2 class="govuk-heading-m govuk-!-padding-top-6">
+        Product
+      </h2>
 
-      <a class="govuk-button" href="confirmation-page" role="button">
-        Send incident report
-      </a>
+      {{ required_field("Product name", "product-name") }}
+
+      <dl class="app-check-your-answers app-check-your-answers--short">
+        <div class="app-check-your-answers__contents">
+          <dt class="app-check-your-answers__question">
+            Product categories
+          </dt>
+          <dd class="app-check-your-answers__answer">
+            {% if data | anyCategories %}
+              <ul class="govuk-list govuk-list--bullet">
+                {% for category in data | getCategories %}
+                  <li>{{ category }}</li>
+                {% endfor %}
+              </ul>
+            {% elif data['do-you-have-a-report'] === 'yes' %}
+              <span class="hint-text">Optional</span>
+            {% else %}
+              <span class="hint-text">Required if no case file attached</span>
+            {% endif %}
+          </dd>
+          <dd class="app-check-your-answers__change">
+            <a href="product-categories">
+              {% if data | anyCategories %}
+                Change<span class="govuk-visually-hidden"> categories</span>
+              {% else %}
+                Add<span class="govuk-visually-hidden"> categories</span>
+              {% endif %}
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      {{ required_field("Product model number", "product-model-number") }}
+
+      
+      <h2 class="govuk-heading-m govuk-!-padding-top-6">
+        Business
+      </h2>
+
+      {{ required_field("Business name", "business-name") }}
+      {{ required_address_field("Registered address", "registered") }}
+      {{ required_address_field("Trading address", "trading") }}
+      {{ required_field("Primary contact name", "primary-contact-name") }}
+      {{ required_field("Email address", "email-address") }}
+      {{ required_field("Website", "website") }}
+      {{ required_field("Phone number", "phone-number") }}
+
+      <div class="govuk-!-margin-top-6">
+        <a href="/delete-report">Delete incident report</a>
+      </div>
+    </div>
+    <div class="govuk-grid-column-one-third">
+      {% if data['do-you-have-a-report'] === 'yes' %}
+        <a class="govuk-button govuk-!-margin-top-6" href="confirmation-page" role="button">
+          Submit incident report
+        </a>
+      {% else %}
+        <p class="govuk-!-margin-top-6">
+          To submit the report, attach a case file or answer all of the required questions.
+        </p>
+      {% endif %}
     </div>
   </div>
 
 {% endblock %}
 
-{% macro required_field(name, key) %}
+{% macro required_field(name, key, optional_with_file=true, required_text="Required if no case file attached") %}
   <dl class="app-check-your-answers app-check-your-answers--short">
     <div class="app-check-your-answers__contents">
       <dt class="app-check-your-answers__question">
@@ -159,10 +167,10 @@
       <dd class="app-check-your-answers__answer">
         {% if data[key] %}
           {{ data[key] }}
-        {% elif data['do-you-have-a-report'] === 'yes' %}
+        {% elif data['do-you-have-a-report'] === 'yes' and optional_with_file %}
           <span class="hint-text">Optional</span>
         {% else %}
-          <span class="hint-text">Required if no case file attached</span>
+          <span class="hint-text">{{ required_text }}</span>
         {% endif %}
       </dd>
       <dd class="app-check-your-answers__change">
