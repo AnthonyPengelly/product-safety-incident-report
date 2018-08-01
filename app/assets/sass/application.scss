@@ -20,3 +20,44 @@ $govuk-global-styles: true;
 .right-align {
     text-align: right;
 }
+
+.govuk-grid-row {
+	a {
+		&:visited {
+			color: $govuk-link-colour !important;
+		}
+	}
+	.govuk-back-link {
+		&:visited {
+			color: $govuk-text-colour !important;
+		}
+	}
+}
+
+.list-entry-remove {
+	background-color: #dee0e2;
+	color: $govuk-text-colour;
+	&:hover {
+		background-color: #d0d3d6;
+		color: $govuk-text-colour;
+	}
+	&:visited {
+		background-color: #dee0e2;
+		color: $govuk-text-colour;
+	}
+	&:active {
+		background-color: #dee0e2;
+		color: $govuk-text-colour;
+	}
+	&:focus {
+		background-color: #dee0e2;
+		color: $govuk-text-colour;
+	}
+}
+
+.delete-link {
+	color: 	#b10e1e !important;
+	&:hover {
+		color: 	#b10e1e !important;
+	}
+}

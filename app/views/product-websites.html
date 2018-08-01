@@ -1,25 +1,28 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Product name
+  Product model number
 {% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <form action="/case-number" method="post" class="form">
+      <form action="/check-your-answers" method="post" class="form">
         {{ govukInput({
             label: {
-              text: "What is the product or part called?",
+              text: "Purchase website",
               isPageHeading: true,
               classes: "govuk-label--l"
             },
-            hint: {
-              text: "If you don’t know the name, use a short description."
-            },
-            id: "product-name",
-            name: "product-name"
+            id: "product-websites",
+            name: "product-websites"
           }) }}
+
+        <div class="govuk-form-group list-entry">
+          <button type="button" class="govuk-button list-entry-remove">
+            Add another website address
+          </button>
+        </div>
 
         <button class="govuk-button">Continue</button>
       </form>

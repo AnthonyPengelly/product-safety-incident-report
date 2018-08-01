@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Business name
+  Manufacturer name
 {% endblock %}
 
 {% block content %}
@@ -10,7 +10,7 @@
       <form action="/check-your-answers" method="post" class="form">
         {{ govukInput({
             label: {
-              text: "Business name",
+              text: "Manufacturer name",
               isPageHeading: true,
               classes: "govuk-label--l"
             },

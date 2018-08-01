@@ -1,24 +1,21 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Product name
+  Importer name
 {% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <form action="/case-number" method="post" class="form">
+      <form action="/check-your-answers" method="post" class="form">
         {{ govukInput({
             label: {
-              text: "What is the product or part called?",
+              text: "Importer name",
               isPageHeading: true,
               classes: "govuk-label--l"
             },
-            hint: {
-              text: "If you don’t know the name, use a short description."
-            },
-            id: "product-name",
-            name: "product-name"
+            id: "importer-business-name",
+            name: "importer-business-name"
           }) }}
 
         <button class="govuk-button">Continue</button>
