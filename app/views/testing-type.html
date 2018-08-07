@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="/product-description" method="post" class="form">
+        {{ govukCheckboxes({
+          idPrefix: "testing-type",
+          name: "testing-type",
+          fieldset: {
+            legend: {
+              text: "What do you need testing for?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "chemical-safety",
+              text: "Chemical safety"
+            },
+            {
+              value: "choking-risk",
+              text: "Choking risk"
+            },
+            {
+              value: "electrical-safety",
+              text: "Electrical Safety"
+            },
+            {
+              value: "e-m-c",
+              text: "Electromagnetic Compatibility"
+            },
+            {
+              value: "gas-safety",
+              text: "Gas Safety"
+            },
+            {
+              value: "field-labeling",
+              text: "Field Labeling"
+            },
+            {
+              value: "fire",
+              text: "Fire"
+            },
+            {
+              value: "hazardous-locations",
+              text: "Hazardous Locations"
+            },
+            {
+              value: "sanitation",
+              text: "Sanitation"
+            }
+          ]
+        }) }}
+        <button class="govuk-button">Continue</button>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

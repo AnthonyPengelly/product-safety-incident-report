@@ -1,35 +1,37 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Report a product safety incident
+  Product safety reporting and support
 {% endblock %}
 
 {% block content %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      
+
       <h1 class="govuk-heading-l">
-        Product safety reporting and support 
+        Product safety reporting and support
       </h1>
 
-      <h2 class="govuk-heading-m"><a href="#">Get support</a></h2>
+      <h2 class="govuk-heading-m"><a href="support-type">Get support</a></h2>
       <p>
         Advice on legislation or support with product testing or anything where national coordination is necessary.
       </p>
 
-      <h2 class="govuk-heading-m"><a href="#">View OPSS case database</a></h2>
+      <h2 class="govuk-heading-m"><a href="all-cases">View OPSS case database</a></h2>
       <p>
         Cases reported to OPSS and EU data from <a href="https://ec.europa.eu/consumers/consumers_safety/safety_products/rapex/alerts/?event=main.listNotifications">RAPEX</a> and <a href="https://webgate.ec.europa.eu/icsms/">ICSMS</a>.
-      </p>      
+      </p>
 
-      <h2 class="govuk-heading-m"><a href="product-name">Create an incident report</a></h2>
+      <h2 class="govuk-heading-m">
+        <a href="product-name">Report a product safety risk</a>
+      </h2>
       {% if not data['confirmed'] and not data['product-name'] %}
         <p>
-          You must report all severe product safety incidents. Severe incidents will be responded to within 24 hours.
+          You must report all severe product safety risks. Severe risks will be responded to within 24 hours.
         </p>
         <p class='govuk-!-padding-bottom-6'>
-          Report other product safety incidents to improve the data we have to identify areas of risk to consumers and coordinate action.
+          Report less severe product safety risks to improve the data we have to identify areas of risk to consumers and coordinate action.
         </p>
       {% endif %}
     </div>
@@ -60,7 +62,7 @@
                   &mdash;
                 {% endif %}
               </td>
-              <td class="govuk-table__cell">24/07/2018</td>
+              <td class="govuk-table__cell">10/08/2018</td>
               <td class="govuk-table__cell">HDJ2123F</td>
               <td class="govuk-table__cell right-align"><a href="/check-your-answers">View</a></td>
             </tr>
@@ -90,7 +92,7 @@
                   &mdash;
                 {% endif %}
               </td>
-              <td class="govuk-table__cell">24/07/2018</td>
+              <td class="govuk-table__cell">10/08/2018</td>
               <td class="govuk-table__cell right-align"><a href="/check-your-answers">View</a></td>
             </tr>
           </tbody>

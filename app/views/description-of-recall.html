@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Description of risk
+  Description of recall action
 {% endblock %}
 
 {% block content %}
@@ -10,12 +10,12 @@
       <form action="/check-your-answers" method="post" class="form">
         {{ govukTextarea({
             label: {
-              text: "Description of risk",
+              text: "Description of recall action",
               isPageHeading: true,
               classes: "govuk-label--l"
             },
-            id: "description-of-incident",
-            name: "description-of-incident"
+            id: "description-of-recall",
+            name: "description-of-recall"
           }) }}
 
         <button class="govuk-button">Continue</button>

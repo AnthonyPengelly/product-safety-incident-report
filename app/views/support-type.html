@@ -1,44 +1,39 @@
 {% extends "layout.html" %}
 
-{% block pageTitle %}
-  Incident severity
-{% endblock %}
-
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <form action="/do-you-have-a-report" method="post" class="form">
+      <form action="/testing-type" method="post" class="form">
       {{ govukRadios({
-        idPrefix: "how-severe-is-your-case",
-        name: "how-severe-is-your-case",
+        idPrefix: "support-type",
+        name: "support-type",
         fieldset: {
           legend: {
-            text: "What is the safety risk?",
+            text: "What type of support do you want?",
             isPageHeading: true,
             classes: "govuk-fieldset__legend--l"
           }
         },
         items: [
           {
-            value: "Serious",
-            text: "Serious"
+            value: "product-testing",
+            text: "Product testing"
           },
           {
-            value: "High",
-            text: "High"
+            value: "support-with-an-investigation",
+            text: "Support with an investigation"
           },
           {
-            value: "Medium",
-            text: "Medium"
+            value: "advice-on-legislation-or-regulation",
+            text: "Advice on legislation or regulation"
           },
           {
-            value: "Low",
-            text: "Low"
+            value: "other",
+            text: "Other"
           }
         ]
       }) }}
         <button class="govuk-button">Continue</button>
-
       </form>
     </div>
   </div>

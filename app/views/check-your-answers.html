@@ -5,24 +5,34 @@
 {% endblock %}
 
 {% block content %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {{ govukBackLink({
         text: "Back",
         href: "/"
       }) }}
-      <h1 class="govuk-heading-l govuk-!-padding-top-6">
-        {{ data['product-name'] }}
+      <h1 class="govuk-heading-xl govuk-!-padding-top-6">
+        Risk summary
       </h1>
     </div>
   </div>
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      <p>
+        {% if data['do-you-have-case-number'] === 'yes' %}
+          Check the details of the report and add any information that isn't in the uploaded case file.
+        {% else %}
+          Check the details of the report and add information the OPSS team will need to diagnose the severity of the case.
+        {% endif %}
+      </p>
+    </div>
+
+    <div class="govuk-grid-column-full">
       <h2 class="govuk-heading-m govuk-!-padding-top-6">
         Case
       </h2>
 
+      {{ required_field("Case name", "product-name", "Required if no case file attached") }}
       <dl class="app-check-your-answers app-check-your-answers--short">
         <div class="app-check-your-answers__contents">
           <dt class="app-check-your-answers__question">
@@ -64,7 +74,7 @@
         </div>
         <div class="app-check-your-answers__contents">
           <dt class="app-check-your-answers__question">
-            CACS case number
+            CAB number
           </dt>
           <dd class="app-check-your-answers__answer">
             {% if data['cacs-case-number'] %}
@@ -86,13 +96,13 @@
       </dl>
 
       <h2 class="govuk-heading-m govuk-!-padding-top-6">
-        Incident
+        Risk
       </h2>
 
       <dl class="app-check-your-answers app-check-your-answers--short">
         <div class="app-check-your-answers__contents">
           <dt class="app-check-your-answers__question">
-            Incident severity
+            Risk severity
           </dt>
           <dd class="app-check-your-answers__answer">
             {{ data['how-severe-is-your-case']}}
@@ -106,6 +116,7 @@
       </dl>
 
       {{ required_field("Description", "description-of-incident", "Required if no case file attached") }}
+      {{ required_field("Recall action", "description-of-recall", "Optional") }}
       {{ required_field("Recall website", "recall-url", "Optional") }}
 
       <h2 class="govuk-heading-m govuk-!-padding-top-6">
@@ -148,7 +159,6 @@
       {{ required_field("Bar code", "product-bar-code", "Optional") }}
       <!-- {{ required_field("Purchase websites", "product-websites", "Optional") }} -->
 
-
       {% if data['business-name'] %}
         <h2 class="govuk-heading-m govuk-!-padding-top-6">
           Manufacturer
@@ -166,7 +176,22 @@
         </h2>
       {% endif %}
       
-      
+      {% if data['importer-business-name'] %}
+        <h2 class="govuk-heading-m govuk-!-padding-top-6">
+          Importer
+        </h2>
+        {{ required_field("Name", "importer-business-name", "Optional") }}
+        {{ required_address_field("Registered address", "importer-registered", "Optional") }}
+        {{ required_address_field("Trading address", "importer-trading", "Optional") }}
+        {{ required_field("Contact name", "importer-primary-contact-name", "Optional") }}
+        {{ required_field("Email address", "importer-email-address", "Optional") }}
+        {{ required_field("Website", "importer-website", "Optional") }}
+        {{ required_field("Phone number", "importer-phone-number", "Optional") }}
+      {% else %}
+        <h2 class="govuk-heading-m govuk-!-padding-top-6 add-an-entity">
+          <a href='importer-business-name'>Add an importer</a>
+        </h2>
+      {% endif %}
 
       {% if data['distributor-business-name'] %}
         <h2 class="govuk-heading-m govuk-!-padding-top-6">
@@ -182,23 +207,6 @@
       {% else %}
         <h2 class="govuk-heading-m govuk-!-padding-top-6 add-an-entity">
           <a href='distributor-business-name'>Add a distributor</a>
-        </h2>
-      {% endif %}
-
-      {% if data['importer-business-name'] %}
-        <h2 class="govuk-heading-m govuk-!-padding-top-6">
-          Importer
-        </h2>
-        {{ required_field("Name", "importer-business-name", "Optional") }}
-        {{ required_address_field("Registered address", "importer-registered", "Optional") }}
-        {{ required_address_field("Trading address", "importer-trading", "Optional") }}
-        {{ required_field("Contact name", "importer-primary-contact-name", "Optional") }}
-        {{ required_field("Email address", "importer-email-address", "Optional") }}
-        {{ required_field("Website", "importer-website", "Optional") }}
-        {{ required_field("Phone number", "importer-phone-number", "Optional") }}
-      {% else %}
-        <h2 class="govuk-heading-m govuk-!-padding-top-6 add-an-entity">
-          <a href='importer-business-name'>Add an importer</a>
         </h2>
       {% endif %}
 
@@ -223,18 +231,22 @@
         </h2>
       {% endif %}
 
-  
-
     <div class="govuk-!-margin-top-9">
-      <a class='delete-link' href="/delete-report">Delete incident report</a>
+      <form action="/confirmation-page" method="post">
+        <input type="checkbox" name="confirmed" checked="true" class="govuk-visually-hidden"></input>
+        <button class="govuk-button govuk-!-margin-top-6">
+          Submit risk report
+        </button>
+      </form>
+      <a class='delete-link govuk-!-margin-top-6' href="/delete-report">Delete risk report</a>
     </div>
     </div>
-    <div class="govuk-grid-column-one-third">
+    {# <div class="govuk-grid-column-one-third">
       {% if data['do-you-have-a-report'] === 'yes' %}
         <form action="/confirmation-page" method="post">
           <input type="checkbox" name="confirmed" checked="true" class="govuk-visually-hidden"></input>
           <button class="govuk-button govuk-!-margin-top-6">
-            Submit incident report
+            Submit risk report
           </button>
         </form>
       {% else %}
@@ -242,7 +254,7 @@
           To submit the report, attach a case file or answer all of the required questions.
         </p>
       {% endif %}
-    </div>
+    </div> #}
   </div>
 
 {% endblock %}

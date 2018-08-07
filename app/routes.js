@@ -11,11 +11,23 @@ router.post('/upload-report', function (req, res) {
   var doYouHaveAReport = req.body["do-you-have-a-report"];
 
   if (doYouHaveAReport === 'no') {
-    // Redirect to the relevant page
     res.redirect('/check-your-answers')
   } else {
-    // If over18 is any other value (or is missing) render the page requested
     res.render('upload-report')
+  }
+})
+
+router.post('/testing-type', function (req, res) {
+  var supportType = req.body["support-type"];
+
+  if (supportType === 'support-with-an-investigation') {
+    res.redirect('/support-with-an-investigation')
+  } else if (supportType === 'advice-on-legislation-or-regulation') {
+    res.redirect('/advice-on-legislation-or-regulation')
+  } else if (supportType === 'other') {
+    res.redirect('/other-support')
+  } else {
+    res.render('testing-type')
   }
 })
 
