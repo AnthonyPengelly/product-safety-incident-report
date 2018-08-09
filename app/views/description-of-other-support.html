@@ -3,15 +3,15 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <form action="/check-your-answers" method="post" class="form">
+      <form action="/check-your-answers-other-support" method="post" class="form">
         {{ govukTextarea({
             label: {
-              text: "Description of risk",
+              text: "What support would you like?",
               isPageHeading: true,
               classes: "govuk-label--l"
             },
-            id: "description-of-incident",
-            name: "description-of-incident"
+            id: "description-of-other-support",
+            name: "description-of-other-support"
           }) }}
 
         <button class="govuk-button">Continue</button>

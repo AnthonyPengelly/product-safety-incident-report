@@ -3,15 +3,18 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <form action="/check-your-answers" method="post" class="form">
-        {{ govukTextarea({
+      <form action="/product-description" method="post" class="form">
+        {{ govukInput({
             label: {
-              text: "Description of risk",
+              text: "What is the product or part called?",
               isPageHeading: true,
               classes: "govuk-label--l"
             },
-            id: "description-of-incident",
-            name: "description-of-incident"
+            hint: {
+              text: "If you don’t know the name, use a short description."
+            },
+            id: "product-name-for-testing",
+            name: "product-name-for-testing"
           }) }}
 
         <button class="govuk-button">Continue</button>

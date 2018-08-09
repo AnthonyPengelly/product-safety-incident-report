@@ -1,17 +1,21 @@
 {% extends "layout.html" %}
 
+{% block pageTitle %}
+  Description of risk
+{% endblock %}
+
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <form action="/check-your-answers" method="post" class="form">
+      <form action="/test-needs" method="post" class="form">
         {{ govukTextarea({
             label: {
-              text: "Description of risk",
+              text: "Product description",
               isPageHeading: true,
               classes: "govuk-label--l"
             },
-            id: "description-of-incident",
-            name: "description-of-incident"
+            id: "product-description",
+            name: "product-description"
           }) }}
 
         <button class="govuk-button">Continue</button>

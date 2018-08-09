@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Product safety reporting and support
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+      Create an account
+    </h1>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="email">
+        Full name
+      </label>
+      <input class="govuk-input" id="email" name="email" type="text" aria-describedby="email-hint">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="email">
+        Email address
+      </label>
+      <span id="email-hint" class="govuk-hint">
+        Your address must be from government organisation
+      </span>
+      <input class="govuk-input" id="email" name="email" type="text" aria-describedby="email-hint">
+    </div>
+
+    <div class='govuk-form-group'>
+      <label class="govuk-label" for="email">
+        Password
+      </label>
+      <span id="email-hint" class="govuk-hint">
+        At least 8 characters
+      </span>
+      <input class="govuk-input" id="email" name="email" type="text" aria-describedby="email-hint">
+    </div>
+
+    <a href="/" role="button" class="govuk-button govuk-!-margin-top-2 govuk-!-margin-bottom-8">
+      <strong>Continue</strong>
+    </a>
+
+
+  </div>
+</div>
+
+{% endblock %}

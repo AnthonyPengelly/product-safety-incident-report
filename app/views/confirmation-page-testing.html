@@ -9,7 +9,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       <div class="govuk-panel govuk-panel--confirmation">
-        <h2 class="govuk-panel__title">Risk report sent</h2>
+        <h2 class="govuk-panel__title">Testing request sent</h2>
         <div class="govuk-panel__body">
           Your reference number<br><strong>HDJ2123F</strong>
         </div>
@@ -20,16 +20,7 @@
       </p>
 
       <p>
-        We'll reply within
-        {% if data['how-severe-is-your-case'] === 'Serious' %}
-          24 hours
-        {% elif data['how-severe-is-your-case'] === 'High' %}
-          3 days
-        {% elif data['how-severe-is-your-case'] === 'Medium' %}
-          1 week
-        {% else %}
-          nope.
-        {% endif %}
+        We'll reply within 3 days to let you know if we can test your product and who to send it to.
       </p>
 
       <a href="/">Return to product safety dashboard</a>

@@ -1,0 +1,118 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Check your answers
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukBackLink({
+        text: "Back",
+        href: "/"
+      }) }}
+      <h1 class="govuk-heading-xl govuk-!-padding-top-6">
+        Support request
+      </h1>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <p>
+          Check the details of your support request before sending it.
+      </p>
+    </div>
+
+    <div class="govuk-grid-column-full">
+      {{ required_field("Support description", "description-of-other-support", "") }}
+      
+
+    <div class="govuk-!-margin-top-9">
+      <form action="/confirmation-page-support" method="post">
+        
+        <button class="govuk-button govuk-!-margin-top-6">
+          Submit support request
+        </button>
+      </form>
+      <a class='delete-link govuk-!-margin-top-6' href="/delete-report">Delete support request</a>
+    </div>
+    </div>
+    {# <div class="govuk-grid-column-one-third">
+      {% if data['do-you-have-a-report'] === 'yes' %}
+        <form action="/confirmation-page" method="post">
+          <input type="checkbox" name="confirmed" checked="true" class="govuk-visually-hidden"></input>
+          <button class="govuk-button govuk-!-margin-top-6">
+            Submit risk report
+          </button>
+        </form>
+      {% else %}
+        <p class="govuk-!-margin-top-6">
+          To submit the report, attach a case file or answer all of the required questions.
+        </p>
+      {% endif %}
+    </div> #}
+  </div>
+
+{% endblock %}
+
+{% macro required_field(name, key, optional_with_file=true, required_text) %}
+  <dl class="app-check-your-answers app-check-your-answers--short">
+    <div class="app-check-your-answers__contents">
+      <dt class="app-check-your-answers__question">
+        {{ name }}
+      </dt>
+      <dd class="app-check-your-answers__answer">
+        {% if data[key] %}
+          {{ data[key] }}
+        {% elif data['do-you-have-a-report'] === 'yes' and optional_with_file %}
+          <span class="hint-text">Optional</span>
+        {% else %}
+          <span class="hint-text">{{ required_text }}</span>
+        {% endif %}
+      </dd>
+      <dd class="app-check-your-answers__change">
+        <a href="{{key}}">
+          {% if data[key] %}
+            Change<span class="govuk-visually-hidden"> {{ name }}</span>
+          {% else %}
+            Add<span class="govuk-visually-hidden"> {{ name }}</span>
+          {% endif %}
+        </a>
+      </dd>
+    </div>
+  </dl>
+{% endmacro %}
+
+{% macro required_address_field(name, key, required_text) %}
+  <dl class="app-check-your-answers app-check-your-answers--short">
+    <div class="app-check-your-answers__contents">
+      <dt class="app-check-your-answers__question">
+        {{ name }}
+      </dt>
+      <dd class="app-check-your-answers__answer">
+        {% if data[key + "-address-line-1"] %}
+          <p>
+            {{ data[key + "-address-line-1"] }}<br />
+            {{ data[key + "-address-line-2"] }}<br />
+            {{ data[key + "-address-town"] }}<br />
+            {{ data[key + "-address-county"] }}<br />
+            {{ data[key + "-address-postcode"] }}
+          </p>
+        {% elif data['do-you-have-a-report'] === 'yes' %}
+          <span class="hint-text">Optional</span>
+        {% else %}
+          <span class="hint-text">{{ required_text }}</span>
+        {% endif %}
+      </dd>
+      <dd class="app-check-your-answers__change">
+        <a href="{{key}}-address">
+          {% if data[key + "-address-line-1"] %}
+            Change<span class="govuk-visually-hidden"> {{ name }}</span>
+          {% else %}
+            Add<span class="govuk-visually-hidden"> {{ name }}</span>
+          {% endif %}
+        </a>
+      </dd>
+    </div>
+  </dl>
+{% endmacro %}

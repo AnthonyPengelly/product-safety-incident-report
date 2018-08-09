@@ -8,25 +8,38 @@ module.exports = function (env) {
   var filters = {}
 
   filters.anyCategories = function(data) {
-    return anyCategories(data);
+    return anyThingFromAList(data['product-categories']);
   }
 
   filters.getCategories = function(data) {
-    if (!anyCategories(data)) {
-      return "";
-    }
-    return data['product-categories'].map(function(category) {
-      return toTitleCase(category.replace(new RegExp('-', 'g'), ' '));
-    });
+    return getListOfThings(data['product-categories']);
   }
 
-  function anyCategories(data) {
-    return data['product-categories'] && data['product-categories'].length !== 0;
+  filters.anyTestingType = function(data) {
+    return anyThingFromAList(data['testing-type']);
   }
+
+  filters.getTestingType = function(data) {
+    return getListOfThings(data['testing-type']);
+  }  
 
   function toTitleCase(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
+
+function getListOfThings(array) {
+    if (!anyThingFromAList(array)) {
+      return "";
+    }
+    return array.map(function(thing) {
+      return toTitleCase(thing.replace(new RegExp('-', 'g'), ' '));
+    });
+  }
+
+  function anyThingFromAList(array) {
+    return array && array.length !== 0;
+  }
+
 
   /* ------------------------------------------------------------------
     add your methods to the filters obj below this comment block:

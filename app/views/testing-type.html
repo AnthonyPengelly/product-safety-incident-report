@@ -3,7 +3,7 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <form action="/product-description" method="post" class="form">
+      <form action="/product-name-for-testing" method="post" class="form">
         {{ govukCheckboxes({
           idPrefix: "testing-type",
           name: "testing-type",
@@ -28,7 +28,7 @@
               text: "Electrical Safety"
             },
             {
-              value: "e-m-c",
+              value: "electromagnetic-compatibility",
               text: "Electromagnetic Compatibility"
             },
             {

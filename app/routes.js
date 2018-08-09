@@ -21,11 +21,11 @@ router.post('/testing-type', function (req, res) {
   var supportType = req.body["support-type"];
 
   if (supportType === 'support-with-an-investigation') {
-    res.redirect('/support-with-an-investigation')
+    res.redirect('/description-of-support')
   } else if (supportType === 'advice-on-legislation-or-regulation') {
-    res.redirect('/advice-on-legislation-or-regulation')
+    res.redirect('/description-of-advice-on-legislation-or-regulation')
   } else if (supportType === 'other') {
-    res.redirect('/other-support')
+    res.redirect('/description-of-other-support')
   } else {
     res.render('testing-type')
   }

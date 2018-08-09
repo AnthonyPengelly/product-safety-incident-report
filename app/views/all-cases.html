@@ -2,24 +2,159 @@
 
 {% block content %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-l">
-        Product safety cases
-      </h1>
+    <h1 class="govuk-heading-xl">
+      Product safety cases
+    </h1>
 
-    </div>
   </div>
+</div>
 
-  <div class='govuk-grid-row'>
-    <div class='govuk-grid-column-one-third'>
-      
-    </div>
-    <div class='govuk-grid-column-two-thirds'>
-      
-    </div>
+<div class='govuk-grid-row'>
+  <div class='govuk-grid-column-one-third'>
+    {{ govukInput({
+        label: {
+          text: "Search for a product or brand"
+        }
+      }) }}
+      <button type="submit" class="govuk-button">
+        Search
+      </button>
   </div>
+  <div class='govuk-grid-column-two-thirds'>
+    {{ search_result
+      (
+      "Unknown",
+      "Brand",
+      "Unknown",
+      "Extension lead",
+      "Serious",
+      "Electric shock",
+      "#",
+      "Being investigated",
+      "Case opened",
+      "08/08/2018",
+      "Lewisham",
+      "https://ec.europa.eu/consumers/consumers_safety/safety_products/rapex/alerts/repository/content/2018/2018-w31/2018-w31_25840-1f.jpg"
+      ) }}
+    {{ search_result
+      (
+      "LED reflektor",
+      "Brand",
+      "Carneo",
+      "LED floodlight",
+      "Serious",
+      "Electric shock",
+      "#",
+      "Being investigated",
+      "Case opened",
+      "08/08/2018",
+      "Hackney",
+      "https://ec.europa.eu/consumers/consumers_safety/safety_products/rapex/alerts/?event=getImage&reference=325256&id=2683293"
+      ) }}
+      {{ search_result
+      (
+      "Unknown",
+      "Brand",
+      "Unknown",
+      "Ring",
+      "Serious",
+      "Chemical",
+      "#",
+      "Being investigated",
+      "Case opened",
+      "07/08/2018",
+      "Kent",
+      "https://ec.europa.eu/consumers/consumers_safety/safety_products/rapex/alerts/?event=getImage&reference=322886&id=2659937"
+      ) }}
+      {{ search_result
+      (
+      "Black Sabbath",
+      "Brand",
+      "World famous tattoo ink",
+      "Tattoo ink",
+      "Serious",
+      "Chemical",
+      "#",
+      "Being investigated",
+      "Case opened",
+      "06/08/2018",
+      "Lancashire",
+      "https://ec.europa.eu/consumers/consumers_safety/safety_products/rapex/alerts/?event=getImage&reference=326119&id=2692382"
+      ) }}
+  </div>
+</div>
 
 
 {% endblock %}
+
+{% macro search_result
+  ( 
+  product_name,
+  business_type,
+  brand_name,
+  product_category,
+  risk_level,
+  risk_type,
+  url,
+  status,
+  last_action,
+  last_action_date,
+  local_authority,
+  img_url
+  ) %}
+
+<div class='search-result'>
+  <h3 class='govuk-heading-m'>
+    <a href='{{ url }}'>{{ product_name }}</a>
+  </h3>
+  <table class='govuk-body-s'>
+    <tr>
+      <td class='image-cell' rowspan='99'>
+        <div class='image-container'>
+          <img src="{{ img_url }}">
+        </div>
+      </td>
+      <td>
+        Product type:<br>
+        {{ product_category }}
+      </td>
+      <td>
+        Risk level:<br>
+        {{ risk_level }}
+      </td>
+      <td>
+        Case status:<br>
+        {{ status }}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ business_type }}:<br>
+        {{ brand_name }}
+      </td>
+      <td>
+        Risk type:<br>
+        {{ risk_type }}
+      </td>
+      <td>
+        Last action:<br>
+        {{ last_action }}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Local authority:<br>
+        {{ local_authority }}
+      </td>
+      <td></td>
+      <td>
+      </td>
+    </tr>
+  </table>
+</div>
+
+{% endmacro %}
+
