@@ -32,7 +32,31 @@
         Case
       </h2>
 
-      {{ required_field("Case name", "product-name", "Required if no case file attached") }}
+      <dl class="app-check-your-answers app-check-your-answers--short">
+    <div class="app-check-your-answers__contents">
+        <dt class="app-check-your-answers__question">
+          Product
+        </dt>
+        <dd class="app-check-your-answers__answer">
+          {% if data['brand-name'] %}
+            {{ data['brand-name'] }} {{ data['product-name'] }}
+          {% elif data['do-you-have-a-report'] === 'yes' and optional_with_file %}
+            <span class="hint-text">Optional</span>
+          {% else %}
+            <span class="hint-text">Required</span>
+          {% endif %}
+        </dd>
+        <dd class="app-check-your-answers__change">
+          <a href="product-name">
+            {% if data[key] %}
+              Change<span class="govuk-visually-hidden"> {{ name }}</span>
+            {% else %}
+              Add<span class="govuk-visually-hidden"> {{ name }}</span>
+            {% endif %}
+          </a>
+        </dd>
+      </div>
+    </dl>
       <dl class="app-check-your-answers app-check-your-answers--short">
         <div class="app-check-your-answers__contents">
           <dt class="app-check-your-answers__question">
@@ -74,7 +98,7 @@
         </div>
         <div class="app-check-your-answers__contents">
           <dt class="app-check-your-answers__question">
-            CAB number
+            CACS number
           </dt>
           <dd class="app-check-your-answers__answer">
             {% if data['cacs-case-number'] %}

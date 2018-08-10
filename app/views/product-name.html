@@ -7,12 +7,20 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      <h1 class='govuk-heading-l'>
+        What is the product or part called?
+      </h1>
       <form action="/case-number" method="post" class="form">
         {{ govukInput({
             label: {
-              text: "What is the product or part called?",
-              isPageHeading: true,
-              classes: "govuk-label--l"
+              text: "Brand name"
+            },
+            id: "brand-name",
+            name: "brand-name"
+          }) }}
+          {{ govukInput({
+            label: {
+              text: "Product or part name"
             },
             hint: {
               text: "If you don’t know the name, use a short description."
@@ -20,10 +28,8 @@
             id: "product-name",
             name: "product-name"
           }) }}
-
         <button class="govuk-button">Continue</button>
       </form>
     </div>
   </div>
-
 {% endblock %}
