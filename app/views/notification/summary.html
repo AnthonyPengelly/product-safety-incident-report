@@ -1,0 +1,158 @@
+{% extends "layout.html" %}
+{% import "../includes/table.html" as object %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukBackLink({
+        text: "Back",
+        href: "/dashboard"
+      }) }}
+      <h1 class="govuk-heading-xl">
+        Unsafe product incident
+      </h1>
+    </div>
+  </div>
+  <p class='govuk-body-l'>
+    Add details of the case before sending summary to OPS&S
+  </p>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      {% if data['product-name'] %}
+        <dl class="app-check-your-answers app-check-your-answers--short">
+          <div class="app-check-your-answers__contents">
+            <dt class="app-check-your-answers__question">
+              Product
+            </dt>
+            <dd class="app-check-your-answers__answer">
+              {% if data['product-name'] %}
+                {{ data['product-brand-name'] }} {{ data['product-name'] }}
+              {% elif data['do-you-have-a-report'] %}
+                <span class="hint-text">{{ optional_message }}</span>
+               {% endif %} 
+            </dd>
+            <dd class="app-check-your-answers__change">
+              <a href="product/product-name">
+                {% if data['product-name'] %}
+                  Change<span class="govuk-visually-hidden"> {{ data['product-name'] }}</span>
+                {% else %}
+                  Add<span class="govuk-visually-hidden"> {{ data['product-name'] }}</span>
+                {% endif %}
+              </a>
+            </dd>
+          </div>
+        </dl>
+        {% else %}
+        {{ object.optional_field(
+          'Product description',
+          'product-short-description',
+          data,
+          'product/product-name',
+          'Required')  }}
+      {% endif %}
+      {{ object.optional_field(
+        'Reference number',
+        'unique-ref-number',
+        data,
+        'setup/case-number',
+        'Optional')  }}
+    </div>
+    <div class='govuk-grid-column-two-thirds'>
+      <h2 class='govuk-heading-m govuk-!-padding-top-6'>Risk assessment</h2>
+    </div>
+    <div class="govuk-grid-column-full">
+      {{ object.optional_field(
+        'Risk severity',
+        'how-severe-is-your-case',
+        data,
+        '/incident-severity',
+        'Required')  }}
+    </div>
+    <div class='govuk-grid-column-two-thirds'>
+      <h2 class='govuk-heading-m govuk-!-padding-top-6'>Attached files</h2>
+    </div>
+    <div class="govuk-grid-column-full">
+      {{ object.optional_field(
+        'Case file',
+        'case-file',
+        data,
+        'files/case-file',
+        'Required')  }}
+      {{ object.optional_field(
+        'Technical file',
+        'technical-file',
+        data,
+        'files/technical-file',
+        'Optional')  }}
+      {{ object.optional_field(
+        'Image',
+        'image-001',
+        data,
+        'files/image-001',
+        'Optional')  }}
+        {% if data['image-001'] and not data['image-002'] %}
+          <p><strong><a href='files/image-002'>Add another image</a></strong></p>
+        {% elif data['image-002'] %}
+          {{ object.optional_field(
+          'Image',
+          'image-002',
+          data,
+          'files/image-002',
+          'Optional')  }}
+        {% endif %}
+        {% if data['image-002'] and not data['image-003'] %}
+          <p><strong><a href='files/image-003'>Add another image</a></strong></p>
+        {% elif data['image-003'] %}
+          {{ object.optional_field(
+          'Image',
+          'image-003',
+          data,
+          'files/image-003',
+          'Optional')  }}
+        {% endif %}
+        {% if data['image-003'] and not data['image-004'] %}
+          <p><strong><a href='files/image-004'>Add another image</a></strong></p>
+        {% elif data['image-004'] %}
+          {{ object.optional_field(
+          'Image',
+          'image-004',
+          data,
+          'files/image-004',
+          'Optional')  }}
+        {% endif %}
+        {% if data['image-004'] and not data['image-005'] %}
+          <p><strong><a href='files/image-004'>Add another image</a></strong></p>
+        {% elif data['image-005'] %}
+          {{ object.optional_field(
+          'Image',
+          'image-005',
+          data,
+          'files/image-005',
+          'Optional')  }}
+        {% endif %}
+      </div>
+      <div class='govuk-grid-column-two-thirds'>
+        <h2 class='govuk-heading-m govuk-!-padding-top-6'>Other information</h2>
+      </div>
+      <div class="govuk-grid-column-full">
+      {{ object.optional_field(
+        'Corrective action website',
+        'corrective-action-site',
+        data,
+        'other/corrective-action-site',
+        'Optional')  }}
+      </div>
+      <div class='govuk-grid-column-two-thirds'>
+        <div class="govuk-!-margin-top-3">
+          <form action="/confirmation-page" method="post">
+            <input type="checkbox" name="confirmed" checked="true" class="govuk-visually-hidden"></input>
+            <button class="govuk-button">
+              Submit
+            </button>
+          </form>
+          <p><a class='delete-link govuk-!-margin-top-6' href="/delete-report">Delete incident report</a></p>
+        </div>
+      </div>
+  </div>
+
+{% endblock %}

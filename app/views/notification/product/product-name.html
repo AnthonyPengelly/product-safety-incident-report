@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class='govuk-heading-l'>
+        What is the product or part called?
+      </h1>
+      <form action="/notification/summary" method="post" class="form">
+        {{ govukInput({
+            label: {
+              text: "Brand name"
+            },
+            id: "product-brand-name",
+            name: "product-brand-name"
+          }) }}
+          {{ govukInput({
+            label: {
+              text: "Product or part name"
+            },
+            id: "product-name",
+            name: "product-name"
+          }) }}
+          <p class='govuk-!-padding-top-4'>
+            If you don’t know the brand or product name, give a short description.
+          </p>
+          {{ govukInput({
+            label: {
+              text: "Description"
+            },
+            hint: {
+              text: "For example, ‘Orange, 4 socket extension lead’."
+            },
+            id: "product-short-description",
+            name: "product-short-description"
+          }) }}
+        <button class="govuk-button">Continue</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

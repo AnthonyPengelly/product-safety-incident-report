@@ -9,7 +9,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       <div class="govuk-panel govuk-panel--confirmation">
-        <h2 class="govuk-panel__title">Risk report sent</h2>
+        <h2 class="govuk-panel__title">Unsafe product notification sent</h2>
         <div class="govuk-panel__body">
           Your reference number<br><strong>HDJ2123F</strong>
         </div>
@@ -20,19 +20,10 @@
       </p>
 
       <p>
-        We'll reply within
-        {% if data['how-severe-is-your-case'] === 'Serious' %}
-          24 hours
-        {% elif data['how-severe-is-your-case'] === 'High' %}
-          3 days
-        {% elif data['how-severe-is-your-case'] === 'Medium' %}
-          1 week
-        {% else %}
-          nope.
-        {% endif %}
+       OPS&S will be in contact within 3 working days.
       </p>
 
-      <a href="/">Return to product safety dashboard</a>
+      <p><a href="dashboard">Return to product safety dashboard</a></p>
     </div>
   </div>
 

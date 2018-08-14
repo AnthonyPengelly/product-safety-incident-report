@@ -1,0 +1,108 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">
+      Product safety <span class='nobreak'>reporting and support</span>
+    </h1>
+
+      <p class="govuk-body-l">
+        Get support from the <span class='nobreak'>Office for Product Safety &amp; Standards</span> on product safety investigations.
+      </p>
+
+
+        <h2 class="govuk-heading-m govuk-!-margin-top-2"><a href="support-type">Get support</a></h2>
+        <p>
+          Advice on legislation or support with product testing.
+        </p>
+
+        <h2 class="govuk-heading-m"><a href="all-cases">View unsafe products</a></h2>
+        <p>
+          Check for information about products known to be unsafe or under investigation.
+        </p>
+
+        <h2 class="govuk-heading-m">
+          <a href="notification/setup/product-name">Report an unsafe product</a>
+        </h2>
+        {% if not data['confirmed'] and not data['product-name'] %}
+        <p>
+          You must report all severe product safety risks.
+        </p> 
+        <p>
+          OPS&S can provide support with product safety investigations. Severe risks will be responded to within 24 hours.
+        </p>
+        <p class='govuk-!-padding-bottom-6'>
+          Report  unsafe products to improve the data we have to identify areas of risk to consumers and coordinate action.
+        </p>
+        {% endif %}
+      </div>
+
+      <div class="govuk-grid-column-full">
+        {% if data['confirmed'] %}
+        <h3 class="govuk-heading-m govuk-!-margin-top-6">
+          Submitted incident notifications
+        </h3>
+        <table class="govuk-table">
+          <caption class="govuk-table__caption govuk-visually-hidden">Submitted reports</caption>
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th class="govuk-table__header" scope="col">Product name</th>
+              <th class="govuk-table__header" scope="col">Case number</th>
+              <th class="govuk-table__header" scope="col">Date submitted</th>
+              <th class="govuk-table__header" scope="col">OPSS reference</th>
+              <th class="govuk-table__header" scope="col"></th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">{{ data['product-name'] }}</td>
+              <td class="govuk-table__cell">
+                {% if data['do-you-have-case-number'] === 'yes' %}
+                {{ data['case-number'] }}
+                {% else %}
+                &mdash;
+                {% endif %}
+              </td>
+              <td class="govuk-table__cell">15/08/2018</td>
+              <td class="govuk-table__cell">HDJ2123F</td>
+              <td class="govuk-table__cell right-align"><a href="/notification/summary">View</a></td>
+            </tr>
+          </tbody>
+        </table>
+        {% elif data['product-name'] %}
+        <h3 class="govuk-heading-m govuk-!-margin-top-6">
+          Reports in progress
+        </h3>
+        <table class="govuk-table">
+          <caption class="govuk-table__caption govuk-visually-hidden">Reports in progress</caption>
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th class="govuk-table__header" scope="col">Product name</th>
+              <th class="govuk-table__header" scope="col">Case number</th>
+              <th class="govuk-table__header" scope="col">Date created</th>
+              <th class="govuk-table__header" scope="col"></th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">{{ data['product-name'] }}</td>
+              <td class="govuk-table__cell">
+                {% if data['do-you-have-case-number'] === 'yes' %}
+                {{ data['case-number'] }}
+                {% else %}
+                &mdash;
+                {% endif %}
+              </td>
+              <td class="govuk-table__cell">15/08/2018</td>
+              <td class="govuk-table__cell right-align"><a href="/notification/summary">View</a></td>
+            </tr>
+          </tbody>
+        </table>
+        {% endif %}
+      </div>
+    </div>
+
+    {% endblock %}

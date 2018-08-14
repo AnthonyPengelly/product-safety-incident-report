@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Upload report
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="/notification/summary" method="post" class="form">
+        <h1 class="govuk-heading-l">
+          Upload a product image
+        </h1>
+        {{ govukFileUpload({
+          id: "image-001",
+          name: "image-001",
+          label: {
+            text: "Upload product image"
+          }
+        }) }}
+        <button class="govuk-button">Continue</button>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

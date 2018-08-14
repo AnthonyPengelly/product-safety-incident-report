@@ -1,0 +1,59 @@
+{% macro optional_field(name, key, data, url, optional_message) %}
+  <dl class="app-check-your-answers app-check-your-answers--short">
+    <div class="app-check-your-answers__contents">
+      <dt class="app-check-your-answers__question">
+        {{ name }}
+      </dt>
+      <dd class="app-check-your-answers__answer">
+        {% if data[key] %}
+          {{ data[key] }}
+        {% else %}
+          <span class="hint-text">{{ optional_message }}</span>
+         {% endif %} 
+      </dd>
+      <dd class="app-check-your-answers__change">
+        <a href="{{url}}">
+          {% if data[key] %}
+            Change<span class="govuk-visually-hidden"> {{ name }}</span>
+          {% else %}
+            Add<span class="govuk-visually-hidden"> {{ name }}</span>
+          {% endif %}
+        </a>
+      </dd>
+    </div>
+  </dl>
+{% endmacro %}
+
+{% macro required_address_field(name, key, required_text) %}
+  <dl class="app-check-your-answers app-check-your-answers--short">
+    <div class="app-check-your-answers__contents">
+      <dt class="app-check-your-answers__question">
+        {{ name }}
+      </dt>
+      <dd class="app-check-your-answers__answer">
+        {% if data[key + "-address-line-1"] %}
+          <p>
+            {{ data[key + "-address-line-1"] }}<br />
+            {{ data[key + "-address-line-2"] }}<br />
+            {{ data[key + "-address-town"] }}<br />
+            {{ data[key + "-address-county"] }}<br />
+            {{ data[key + "-address-postcode"] }}
+          </p>
+        {% elif data['do-you-have-a-report'] === 'yes' %}
+          <span class="hint-text">Optional</span>
+        {% else %}
+          <span class="hint-text">{{ required_text }}</span>
+        {% endif %}
+      </dd>
+      <dd class="app-check-your-answers__change">
+        <a href="{{key}}-address">
+          {% if data[key + "-address-line-1"] %}
+            Change<span class="govuk-visually-hidden"> {{ name }}</span>
+          {% else %}
+            Add<span class="govuk-visually-hidden"> {{ name }}</span>
+          {% endif %}
+        </a>
+      </dd>
+    </div>
+  </dl>
+{% endmacro %}
