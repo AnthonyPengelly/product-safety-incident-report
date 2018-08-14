@@ -4,19 +4,13 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class='govuk-heading-l'>
-        Upload the manufacturer’s <span class='nobreak'>technical file</span>
-      </h1>
+      <h1 class='govuk-heading-l'>Upload a product testing file</h1>
       <form action="/notification/summary" method="post" class="form">
         {{ govukFileUpload({
-          id: "technical-file",
-          name: "technical-file",
-          fieldset: {
-            label: {
-              text: "Upload a technical file",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--xl"
-            }
+          id: "product-testing-file",
+          name: "product-testing-file",
+          label: {
+            text: "Details of the product testing"
           },
           hint: {
             text: "File type must be .csv .json .xml .xlsx .pdf .docx"

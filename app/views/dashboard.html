@@ -52,18 +52,20 @@
               <th class="govuk-table__header" scope="col">Product name</th>
               <th class="govuk-table__header" scope="col">Case number</th>
               <th class="govuk-table__header" scope="col">Date submitted</th>
-              <th class="govuk-table__header" scope="col">OPSS reference</th>
+              <th class="govuk-table__header" scope="col">OPS&S reference</th>
               <th class="govuk-table__header" scope="col"></th>
             </tr>
           </thead>
           <tbody class="govuk-table__body">
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell">{{ data['product-name'] }}</td>
               <td class="govuk-table__cell">
-                {% if data['do-you-have-case-number'] === 'yes' %}
-                {{ data['case-number'] }}
+                {{ data['product-brand-name'] }} {{ data['product-name'] }}
+              </td>
+              <td class="govuk-table__cell">
+                {% if data['unique-ref-number'] %}
+                  {{ data['unique-ref-number'] }}
                 {% else %}
-                &mdash;
+                  &mdash;
                 {% endif %}
               </td>
               <td class="govuk-table__cell">15/08/2018</td>
@@ -90,10 +92,10 @@
             <tr class="govuk-table__row">
               <td class="govuk-table__cell">{{ data['product-name'] }}</td>
               <td class="govuk-table__cell">
-                {% if data['do-you-have-case-number'] === 'yes' %}
-                {{ data['case-number'] }}
+                {% if data['unique-ref-number'] %}
+                  {{ data['unique-ref-number'] }}
                 {% else %}
-                &mdash;
+                  &mdash;
                 {% endif %}
               </td>
               <td class="govuk-table__cell">15/08/2018</td>

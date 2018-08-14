@@ -69,6 +69,15 @@ $govuk-global-styles: true;
 	&:hover {
 		color: 	#b10e1e !important;
 	}
+	&:focus {
+		color: 	#b10e1e !important;
+	}
+	&:active {
+		color: 	#b10e1e !important;
+	}
+	&:visited {
+		color: 	#b10e1e !important;
+	}
 }
 
 .nobreak {

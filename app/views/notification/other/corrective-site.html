@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="/notification/summary" method="post" class="form">
+        {{ govukInput({
+            label: {
+              text: "Corrective action website",
+              isPageHeading: true,
+              classes: "govuk-label--l"
+            },
+            hint: {
+              text: "If the manufacturer or retailer has created a corrective site add the address."
+            },
+            id: "corrective-site",
+            name: "corrective-site"
+          }) }}
+
+        <div class="govuk-form-group list-entry">
+          <button type="button" class="govuk-button list-entry-remove">
+            Add another website address
+          </button>
+        </div>
+
+        <button class="govuk-button">Continue</button>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

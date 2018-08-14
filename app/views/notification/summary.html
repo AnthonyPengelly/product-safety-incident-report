@@ -13,9 +13,6 @@
       </h1>
     </div>
   </div>
-  <p class='govuk-body-l'>
-    Add details of the case before sending summary to OPS&S
-  </p>
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
       {% if data['product-name'] %}
@@ -48,14 +45,16 @@
           'product-short-description',
           data,
           'product/product-name',
-          'Required')  }}
-      {% endif %}
-      {{ object.optional_field(
-        'Reference number',
-        'unique-ref-number',
-        data,
-        'setup/case-number',
-        'Optional')  }}
+          'Required')  
+        }}
+        {% endif %}
+        {{ object.optional_field(
+          'Reference number',
+          'unique-ref-number',
+          data,
+          'setup/case-number',
+          'Optional')  
+        }}
     </div>
     <div class='govuk-grid-column-two-thirds'>
       <h2 class='govuk-heading-m govuk-!-padding-top-6'>Risk assessment</h2>
@@ -66,30 +65,48 @@
         'how-severe-is-your-case',
         data,
         '/incident-severity',
-        'Required')  }}
+        'Required')  
+      }}
     </div>
     <div class='govuk-grid-column-two-thirds'>
       <h2 class='govuk-heading-m govuk-!-padding-top-6'>Attached files</h2>
     </div>
     <div class="govuk-grid-column-full">
       {{ object.optional_field(
-        'Case file',
+        'Case',
         'case-file',
         data,
         'files/case-file',
-        'Required')  }}
+        'Required')  
+      }}
       {{ object.optional_field(
         'Technical file',
         'technical-file',
         data,
         'files/technical-file',
-        'Optional')  }}
+        'Optional')  
+      }}
+      {{ object.optional_field(
+        'Product testing',
+        'product-testing-file',
+        data,
+        'files/product-testing-type',
+        'Optional')
+      }}
+      {{ object.optional_field(
+        'Traceability document',
+        'traceability-doc',
+        data,
+        'files/traceability-doc',
+        'Optional')
+      }}
       {{ object.optional_field(
         'Image',
         'image-001',
         data,
         'files/image-001',
-        'Optional')  }}
+        'Optional')  
+      }}
         {% if data['image-001'] and not data['image-002'] %}
           <p><strong><a href='files/image-002'>Add another image</a></strong></p>
         {% elif data['image-002'] %}
@@ -98,7 +115,8 @@
           'image-002',
           data,
           'files/image-002',
-          'Optional')  }}
+          'Optional')  
+        }}
         {% endif %}
         {% if data['image-002'] and not data['image-003'] %}
           <p><strong><a href='files/image-003'>Add another image</a></strong></p>
@@ -108,7 +126,8 @@
           'image-003',
           data,
           'files/image-003',
-          'Optional')  }}
+          'Optional')  
+        }}
         {% endif %}
         {% if data['image-003'] and not data['image-004'] %}
           <p><strong><a href='files/image-004'>Add another image</a></strong></p>
@@ -118,7 +137,8 @@
           'image-004',
           data,
           'files/image-004',
-          'Optional')  }}
+          'Optional')  
+        }}
         {% endif %}
         {% if data['image-004'] and not data['image-005'] %}
           <p><strong><a href='files/image-004'>Add another image</a></strong></p>
@@ -128,7 +148,8 @@
           'image-005',
           data,
           'files/image-005',
-          'Optional')  }}
+          'Optional')  
+        }}
         {% endif %}
       </div>
       <div class='govuk-grid-column-two-thirds'>
@@ -137,10 +158,11 @@
       <div class="govuk-grid-column-full">
       {{ object.optional_field(
         'Corrective action website',
-        'corrective-action-site',
+        'corrective-site',
         data,
-        'other/corrective-action-site',
-        'Optional')  }}
+        'other/corrective-site',
+        'Optional')  
+      }}
       </div>
       <div class='govuk-grid-column-two-thirds'>
         <div class="govuk-!-margin-top-3">
@@ -150,7 +172,7 @@
               Submit
             </button>
           </form>
-          <p><a class='delete-link govuk-!-margin-top-6' href="/delete-report">Delete incident report</a></p>
+          <p><a class='delete-link govuk-!-margin-top-6' href="#">Delete incident report</a></p>
         </div>
       </div>
   </div>
