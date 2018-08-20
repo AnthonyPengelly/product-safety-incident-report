@@ -1,0 +1,125 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="/notification/setup/case-number" method="post" class="form">
+        {% set emailHtml %}
+          {{ govukInput({
+            id: "contact-by-email",
+            name: "contact-by-email",
+            type: "email",
+            classes: "govuk-!-width-one-third",
+            label: {
+              text: "Email address"
+            }
+          }) }}
+          {% endset -%}
+
+          {% set phoneHtml %}
+          {{ govukInput({
+            id: "contact-by-phone",
+            name: "contact-by-phone",
+            type: "tel",
+            classes: "govuk-!-width-one-third",
+            label: {
+              text: "Phone number"
+            }
+          }) }}
+          {% endset -%}
+
+          {% set textHtml %}
+          {{ govukInput({
+            id: "contact-by-text",
+            name: "contact-by-text",
+            type: "tel",
+            classes: "govuk-!-width-one-third",
+            label: {
+              text: "Mobile phone number"
+            }
+          }) }}
+          {% endset -%}
+
+          {{ govukCheckboxes({
+            idPrefix: "citizenship-conditional",
+            name: "citizen",
+            fieldset: {
+              legend: {
+                text: "How would you like to be contacted?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              },
+              hint: {
+                text: "Select all options that are relevant to you."
+              }
+            },
+            items: [
+              {
+                value: "email",
+                text: "Email",
+                conditional: {
+                  html: emailHtml
+                }
+              },
+              {
+                value: "phone",
+                text: "Phone",
+                conditional: {
+                  html: phoneHtml
+                }
+              },
+              {
+                value: "text message",
+                text: "Text message",
+                conditional: {
+                  html: textHtml
+                }
+              }
+            ]
+          }) }}
+        <button class="govuk-button">Continue</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}
+        {# {{ govukCheckboxes({
+          idPrefix: "testing-type",
+          name: "testing-type",
+          fieldset: {
+            legend: {
+              text: "What information about the product do you have?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "bar-code",
+              text: "Bar code"
+            },
+            {
+              value: "serial-number",
+              text: "Serial number"
+            },
+            {
+              value: "batch-number",
+              text: "Batch number"
+            },
+            {
+              value: "retailer-name",
+              text: "Retailer name"
+            },
+            {
+              value: "importer-name",
+              text: "Importer name"
+            },
+            {
+              value: "manufacturer-name",
+              text: "Manufacturer name"
+            },
+            {
+              value: "no-identify",
+              text: "No identifying info"
+            }
+          ]
+        }) }} #}

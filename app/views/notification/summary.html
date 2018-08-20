@@ -101,17 +101,17 @@
         'Optional')
       }}
       {{ object.optional_field(
-        'Image',
+        'Photo',
         'image-001',
         data,
         'files/image-001',
         'Optional')  
       }}
         {% if data['image-001'] and not data['image-002'] %}
-          <p><strong><a href='files/image-002'>Add another image</a></strong></p>
+          <p><strong><a href='files/image-002'>Add another photo</a></strong></p>
         {% elif data['image-002'] %}
           {{ object.optional_field(
-          'Image',
+          'Photo',
           'image-002',
           data,
           'files/image-002',
@@ -119,10 +119,10 @@
         }}
         {% endif %}
         {% if data['image-002'] and not data['image-003'] %}
-          <p><strong><a href='files/image-003'>Add another image</a></strong></p>
+          <p><strong><a href='files/image-003'>Add another photo</a></strong></p>
         {% elif data['image-003'] %}
           {{ object.optional_field(
-          'Image',
+          'Photo',
           'image-003',
           data,
           'files/image-003',
@@ -130,10 +130,10 @@
         }}
         {% endif %}
         {% if data['image-003'] and not data['image-004'] %}
-          <p><strong><a href='files/image-004'>Add another image</a></strong></p>
+          <p><strong><a href='files/image-004'>Add another photo</a></strong></p>
         {% elif data['image-004'] %}
           {{ object.optional_field(
-          'Image',
+          'Photo',
           'image-004',
           data,
           'files/image-004',
@@ -141,10 +141,10 @@
         }}
         {% endif %}
         {% if data['image-004'] and not data['image-005'] %}
-          <p><strong><a href='files/image-004'>Add another image</a></strong></p>
+          <p><strong><a href='files/image-004'>Add another photo</a></strong></p>
         {% elif data['image-005'] %}
           {{ object.optional_field(
-          'Image',
+          'Photo',
           'image-005',
           data,
           'files/image-005',
